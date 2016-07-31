@@ -1,0 +1,20 @@
+.card-statistics {
+  height: auto;
+  margin-top: 15px;
+  .rating-group {
+    width: 25%;
+    float: left;
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 0;
+    &:first-child, &:nth-child(2), &:nth-child(3), &:nth-child(4) {
+      margin-top: 0;
+    }
+    .label {
+      font-size: 8px;
+      margin-top: 10px;
+      text-transform: uppercase;
+    }
+  }
+
+}

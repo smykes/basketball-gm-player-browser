@@ -1,0 +1,31 @@
+.colors {
+  &.gold {
+    background-color: gold!important;
+    border: 2px solid goldenrod;
+  }
+  &.silver {
+    background-color: silver!important;
+    border: 2px solid darkgray;
+  }
+  &.bronze {
+    background-color: #8c7853!important;
+    border: 2px solid tan;
+  }
+  &.black {
+    background-color: black!important;
+    border: 2px solid black;
+  }
+
+  &.gold, &.silver, &.bronze, &.black {
+    width: 20px;
+    min-width: 20px;
+    height: 20px;
+    opacity: 1;
+    transition: 0.5;
+    padding: 5px;
+    border-radius: 20px;
+    color: white;
+    text-align: center;
+    margin: 0 auto;
+  }
+}

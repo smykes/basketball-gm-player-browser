@@ -1,0 +1,98 @@
+@import 'components/search.scss';
+@import 'components/auto-complete.scss';
+@import 'components/auto-complete-choice.scss';
+@import 'components/radial-gauge.scss';
+@import 'components/colors.scss';
+@import 'components/card-statistics.scss';
+@import 'components/card-collegiate.scss';
+@import 'components/card-physical.scss';
+html {
+    background-color: #0063AC;
+    padding: 0;
+}
+body {
+  margin: 0; padding: 0;
+}
+body, html {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  text-transform: capitalize;
+  height: 100%;
+  box-sizing: border-box;
+}
+main {
+  background-color: transparent;
+  padding: 10px;
+
+}
+header {
+  background-color: #002845;
+  text-align: left;
+  color: white;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  border-bottom: 1px solid #3f5d73;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+label {
+  font-size: 12px;
+  background-color: #0A3665;
+  width: 100%;
+  padding: 5px;
+  color: white;
+  padding: 8px;
+  display: block;
+  text-transform: uppercase;
+  font-weight: 18px;
+  font-weight: 700;
+}
+
+
+
+.card {
+  position:relative;
+  background-color: white;
+  overflow: hidden;
+  padding: 30px;
+
+  //padding: 15px 10px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  .card__label--bottom {
+    width: 100%;
+    height: 5px;
+    background-color: #0A3665;
+    position: absolute;
+    bottom: 0;
+    line-height: 5px;
+    text-align: center;
+  }
+  &.card__title {
+    background-color: white;
+    height: 150px;
+    box-sizing:border-box;
+    padding: 0;
+  }
+  &.label {
+    background-color: none;
+    color: black;
+  }
+
+  .card--interior {
+    padding: 10px;
+  }
+    &.card--half {
+    width: 50%;
+    float: left;
+  }
+  ul, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .auto-complete {
+
+
+  }
+
+}

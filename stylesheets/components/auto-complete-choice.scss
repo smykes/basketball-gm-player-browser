@@ -1,0 +1,32 @@
+.auto-complete-choice {
+
+    padding: 15px;
+    opacity: 1;
+    cursor: pointer;
+    box-sizing: border-box;
+    background-color: white;
+    line-height: 15px;
+    .label__position {
+      color: gray;
+      width: 10px;
+      height: 10px;
+      background-color: gray;
+      color: white;
+      font-size: 8px;
+      border-radius: 25px;
+      padding: 10px;
+      opacity: 0.5;
+      line-height: 10px;
+      display: inline-block;
+      text-align:center;
+      display: table-cell;
+      vertical-align:middle;
+    }
+    .label__name {
+      font-size: 12px;display: table-cell;
+      vertical-align: middle;
+      padding-left: 5px;
+      line-height: 10px;
+    }
+
+}
