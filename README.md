@@ -7,10 +7,11 @@ This isn't ready for use yet.  I have to build a loader for the JSON file, and I
 ###Working Queries###
 Currently you can search by name (using the first name first as the JSON files only have a name field and not a fName lName field).
 
-There are some other things you can search by (you can use >, <, = for inequalties):
-'':3pt > n
-'':pas > n
-'':reb > n
+There are some other things you can search by you can use >, <, = for inequalties:
+
+    :3pt > n //returns players with a three point rating higher than n
+    :pas > n //returns players with a passer rating higher than n
+    :reb > n //returns players with a rebound rating higher than n
 
 where 'n' is a whole number.
 
