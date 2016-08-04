@@ -24,7 +24,7 @@ export default class CardPhysical extends React.Component {
   }
   _findPlayer() {
     for (let i=0; i < this.props.players.length; i++) {
-      if (this.props.players[i]['uid'] == this.props.uid) {
+      if (this.props.players[i]['uuid'] == this.props.uid) {
         return this.props.players[i];
       }
     }
@@ -37,8 +37,8 @@ export default class CardPhysical extends React.Component {
       <section className="card-physical card card__title">
         <RadialGauge overall={score}/>
         <img className="head-shot" src={player.imgURL} />
-      <label className="card__label--bottom">{player.name} • {player.pos} • {player.college}</label>
-</section>
+        <label className="card__label--bottom">{player.name} • {player.pos} • {player.college}</label>
+      </section>
     )
   }
 }

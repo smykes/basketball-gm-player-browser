@@ -4,14 +4,13 @@ import Colors from './ColorsComponent.js';
 export default class CardStatistics extends React.Component {
   _findPlayer() {
     for (let i=0; i < this.props.players.length; i++) {
-      if (this.props.players[i]['uid'] == this.props.uid) {
+      if (this.props.players[i]['uuid'] == this.props.uid) {
         return this.props.players[i];
       }
     }
   }
   render() {
     let player = this._findPlayer();
-
     return (
       <section className="card card-statistics">
         <div className="rating-group">

@@ -4,7 +4,7 @@ import AutoComplete from './AutoCompleteComponent.js'
 export default class Search extends React.Component {
   _findPlayer() {
     for (let i=0; i < this.props.players.length; i++) {
-      if (this.props.players[i]['uid'] === this.props.uid) {
+      if (this.props.players[i]['uuid'] === this.props.uid) {
         return this.props.players[i];
       }
     }

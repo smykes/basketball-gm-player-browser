@@ -6,11 +6,11 @@ export default class AutoComplete extends React.Component {
     let ret = [];
     for (var i = 0; i < this.props.suggestions.length; i++) {
       ret.push(<AutoCompleteChoice
-                  key={this.props.suggestions[i].uid}
+                  key={this.props.suggestions[i].uuid}
                   choice ={this.props.suggestions[i].name}
                   position={this.props.suggestions[i].pos}
                   select={this.props.select}
-                  lookup={this.props.suggestions[i].uid}
+                  lookup={this.props.suggestions[i].uuid}
                    />)
     }
     return ret;
