@@ -47,7 +47,6 @@ export default class App extends React.Component {
     input = input.toLowerCase();
     if (input.substring(0, 1) !== ':') {
       for (let i = 0; i < this.state.roster.length-1; i++) {
-        console.log(this.state.roster[i].name);
         var tmp;
         if (this.state.roster[i].name === undefined) {
           tmp = 'Jon Doe';
@@ -88,17 +87,17 @@ export default class App extends React.Component {
         let tmp = parseInt(this.state.roster[i].ratings[0][type.skill], 10);
         if (type.equality === ">") {
           if (tmp > type.number) {
-            ret.push(this.state.roster.players[i]);
+            ret.push(this.state.roster[i]);
           }
         }
         else if (type.equality === "<") {
           if (tmp < type.number) {
-            ret.push(this.state.roster.players[i]);
+            ret.push(this.state.roster[i]);
           }
         }
         else if (type.equality === "=") {
           if (tmp === type.number) {
-            ret.push(this.state.roster.players[i]);
+            ret.push(this.state.roster[i]);
           }
         }
       }
