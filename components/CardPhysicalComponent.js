@@ -4,23 +4,7 @@ import RadialGauge from './RadialGaugeComponent.js';
 
 export default class CardPhysical extends React.Component {
   _getOverall(player) {
-    var score = 0;
-    score += player.ratings[0].stre;
-    score += player.ratings[0].spd;
-    score += player.ratings[0].jmp;
-    score += player.ratings[0].endu;
-    score += player.ratings[0].ins;
-    score += player.ratings[0].dnk;
-    score += player.ratings[0].ft;
-    score += player.ratings[0].fg;
-    score += player.ratings[0].tp;
-    score += player.ratings[0].blk;
-    score += player.ratings[0].stl;
-    score += player.ratings[0].drb;
-    score += player.ratings[0].pss;
-    score += player.ratings[0].reb;
-    score += player.ratings[0].pot;
-    return Math.round(score/16);
+    return Math.round((4 * player.ratings[0].hgt + player.ratings[0].stre + 4 * player.ratings[0].spd + 2 * player.ratings[0].jmp + 3 * player.ratings[0].endu + 3 * player.ratings[0].ins + 4 * player.ratings[0].dnk + player.ratings[0].ft + player.ratings[0].fg + 2 * player.ratings[0].tp + player.ratings[0].blk + player.ratings[0].stl + player.ratings[0].drb + 3 * player.ratings[0].pss + player.ratings[0].reb) / 32);
   }
   _findPlayer() {
     for (let i=0; i < this.props.players.length; i++) {

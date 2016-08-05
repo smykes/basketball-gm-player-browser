@@ -10,6 +10,7 @@ import CardCollegiate from './CardCollegiateComponent.js';
 import CardStatistics from './CardStatisticsComponent.js';
 import FileReader from './FileReaderComponent.js';
 import UUID from 'node-uuid';
+
 export default class App extends React.Component {
   constructor() {
     super();
@@ -140,6 +141,7 @@ export default class App extends React.Component {
     return (
       <section>
         <header>ReactJS Player Browser</header>
+
         <main>
 
         {this.state.uid !== null ?

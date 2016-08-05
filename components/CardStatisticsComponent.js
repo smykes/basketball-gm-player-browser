@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Colors from './ColorsComponent.js';
+
+
 export default class CardStatistics extends React.Component {
   _findPlayer() {
     for (let i=0; i < this.props.players.length; i++) {
