@@ -1,4 +1,8 @@
 {
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/smykes/basketball-gm-player-browser"
+  },
   "name": "BasketBallGMPlayerBrowser",
   "version": "0.1.0",
   "description": "Utility for viewing players in a BasketBall GM JSON file",
@@ -11,12 +15,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "chart.js": "^2.2.1",
     "css-loader": "^0.23.1",
     "extract-text-webpack-plugin": "^1.0.1",
     "node-sass": "^3.8.0",
     "node-uuid": "^1.4.7",
     "postcss-loader": "^0.9.1",
     "react": "^15.2.1",
+    "react-chartjs": "^0.8.0",
+    "react-chartjs-2": "^1.1.7",
     "react-dom": "^15.2.1",
     "sass-loader": "^4.0.0",
     "style-loader": "^0.13.1",

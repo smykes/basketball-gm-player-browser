@@ -19,7 +19,8 @@ export default class App extends React.Component {
       suggestions : [],
       modal: 'false',
       players: [],
-      roster: []
+      roster: [],
+      means: []
     };
     this.select = this.select.bind(this);
     this.update = this.update.bind(this);
@@ -159,12 +160,67 @@ export default class App extends React.Component {
     var file = document.getElementById('test').files[0];
     var that = this;
     var jsonReader = new window.FileReader();
+    var tmpThreePoint = 0,
+        tmpHeight = 0,
+        tmpStrength = 0,
+        tmpSpeed = 0,
+        tmpJump = 0,
+        tmpEndurance = 0,
+        tmpIns = 0,
+        tmpDunk = 0,
+        tmpFreeThrow = 0,
+        tmpFieldGoal = 0,
+        tmpThreePoint = 0,
+        tmpBlock = 0,
+        tmpSteal = 0,
+        tmpDribble = 0,
+        tmpPass = 0,
+        tmpRebound = 0,
+        tmpPotential = 0;
     jsonReader.onload = function(e) {
       let tmp = JSON.parse(jsonReader.result);
       for (var i = 0; i < tmp.players.length; i++) {
         tmp.players[i].uuid = UUID.v1();
-      }
-      that.setState({roster: tmp.players, uid: tmp.players[0].uuid}, function() {
+        tmpThreePoint += tmp.players[i].ratings[0].tp;
+        tmpHeight += tmp.players[i].ratings[0].stre;
+        tmpSpeed += tmp.players[i].ratings[0].spd;
+        tmpJump += tmp.players[i].ratings[0].jmp;
+        tmpEndurance += tmp.players[i].ratings[0].endu;
+        tmpIns += tmp.players[i].ratings[0].ins;
+        tmpDunk += tmp.players[i].ratings[0].dnk;
+        tmpFreeThrow += tmp.players[i].ratings[0].ft;
+        tmpFieldGoal += tmp.players[i].ratings[0].fg;
+        tmpBlock += tmp.players[i].ratings[0].blk;
+        tmpSteal += tmp.players[i].ratings[0].stl;
+        tmpDribble += tmp.players[i].ratings[0].drb;
+        tmpPass+= tmp.players[i].ratings[0].pss;
+        tmpRebound += tmp.players[i].ratings[0].reb;
+        tmpPotential += tmp.players[i].ratings[0].pot;
+        tmpStrength += tmp.players[i].ratings[0].pot;
+        }
+      that.setState({
+          roster: tmp.players,
+          uid: tmp.players[0].uuid,
+          means: [
+            {
+              "threePoint" : Math.round(tmpThreePoint/tmp.players.length),
+              "height" : Math.round(tmpHeight/tmp.players.length),
+              "speed" : Math.round(tmpSpeed/tmp.players.length),
+              "strength" : Math.round(tmpStrength/tmp.players.length),
+              "jump" : Math.round(tmpJump/tmp.players.length),
+              "endurance" : Math.round(tmpEndurance/tmp.players.length),
+              "ins" : Math.round(tmpIns/tmp.players.length),
+              "dunk" : Math.round(tmpDunk/tmp.players.length),
+              "freeThrow" : Math.round(tmpFreeThrow/tmp.players.length),
+              "fieldGoal" : Math.round(tmpFieldGoal/tmp.players.length),
+              "block" : Math.round(tmpBlock/tmp.players.length),
+              "steal" : Math.round(tmpSteal/tmp.players.length),
+              "dribble" : Math.round(tmpDribble/tmp.players.length),
+              "pass" : Math.round(tmpPass/tmp.players.length),
+              "rebound" : Math.round(tmpRebound/tmp.players.length),
+              "potential" : Math.round(tmpPotential/tmp.players.length)
+            }
+          ] }, function() {
         console.log(that.state.uid);
       });
     }
@@ -190,7 +246,7 @@ export default class App extends React.Component {
               uid={this.state.uid}
               players={this.state.roster}/>
             <CardPhysical uid={this.state.uid} players={this.state.roster} />
-            <CardStatistics uid={this.state.uid} players={this.state.roster} /> </section>: <section><FileReader action = {this.file} /></section>}
+            <CardStatistics means={this.state.means} uid={this.state.uid} players={this.state.roster} /> </section>: <section><FileReader action = {this.file} /></section>}
 
         </main>
       </section>
