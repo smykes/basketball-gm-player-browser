@@ -66,18 +66,53 @@ export default class App extends React.Component {
     else {
       var type = {};
       switch (input.substring(0,4)) {
-        case ':reb':
-          type.skill = 'reb'
+        case ':tal':
+          type.skill = 'hgt'
           break;
-        case ':pas':
-          type.skill = 'pss'
+        case ':str':
+          type.skill = 'stre'
+          break;
+        case ':spd':
+          type.skill = 'spd'
+          break;
+        case ':jmp':
+          type.skill = 'jmp'
+          break;
+        case ':end':
+          type.skill = 'endu'
+          break;
+        case ':ins':
+          type.skill = 'ins'
+          break;
+        case ':dnk':
+          type.skill = 'dnk'
+          break;
+        case ':fth':
+          type.skill = 'ft'
+          break;
+        case ':fgo':
+          type.skill = 'fg'
           break;
         case ':3pt':
           type.skill = 'tp'
           break;
+        case ':blk':
+          type.skill = 'blk'
+          break;
         case ':stl':
           type.skill = 'stl'
           break;
+        case ':drb':
+          type.skill = 'drb'
+          break;
+        case ':pas':
+          type.skill = 'pss'
+          break;
+        case ':reb':
+          type.skill = 'reb'
+          break;
+        case ':pot':
+          type.skill = 'pot'
         default:
           type.skill = 'err'
           break;
