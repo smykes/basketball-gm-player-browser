@@ -51,8 +51,13 @@ export default class App extends React.Component {
       for (let i = 0; i < this.state.roster.length-1; i++) {
         var tmp;
         if (this.state.roster[i].name === undefined) {
-          tmp = 'Jon Doe';
-          this.state.roster[i].name = 'Jon Doe';
+          if (this.state.roster[i].firstName === undefined) {
+            tmp = 'Jon Doe';
+            this.state.roster[i].name = 'Jon Doe';
+          }
+          else {
+            this.state.roster[i].name = this.state.roster[i].firstName + " " + this.state.roster[i].lastName;
+          }
         }
         else {
           tmp = this.state.roster[i].name;
