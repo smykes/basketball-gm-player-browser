@@ -1,5 +1,5 @@
 # basketball-gm-player-browser
-Utility for viewing Basketball GM JSON roster files.
+Utility for viewing [Basketball GM](https://basketball-gm.com/) JSON roster files.
 
 ###Technical Stuff###
 This is starting to get usable.  You can go to http://dev.secondrunnerup.com/player and choose a file to browse through, currently it only really works with rosters from https://github.com/alexnoob/BasketBall-GM-Rosters
