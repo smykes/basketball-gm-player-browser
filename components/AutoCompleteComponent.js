@@ -4,15 +4,15 @@ import AutoCompleteChoice from './AutoCompleteChoiceComponent';
 export default class AutoComplete extends React.Component {
   _getChoices() {
     let ret = [];
-    for (var i = 0; i < this.props.suggestions.length; i++) {
+    this.props.suggestions.forEach((player) => {
       ret.push(<AutoCompleteChoice
-                  key={this.props.suggestions[i].uuid}
-                  choice ={this.props.suggestions[i].name}
-                  position={this.props.suggestions[i].pos}
+                  key={player.uuid}
+                  choice ={player.name}
+                  position={player.pos}
                   select={this.props.select}
-                  lookup={this.props.suggestions[i].uuid}
+                  lookup={player.uuid}
                    />)
-    }
+    });
     return ret;
   }
   render() {

@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom';
 import AutoComplete from './AutoCompleteComponent.js'
 export default class Search extends React.Component {
   _findPlayer() {
-    for (let i=0; i < this.props.players.length; i++) {
-      if (this.props.players[i]['uuid'] === this.props.uid) {
-        return this.props.players[i];
+    return this.props.players.find((player) => {
+      if (player.uuid === this.props.uid) {
+        return player;
       }
-    }
+    });
   }
   render() {
     let player = this._findPlayer()

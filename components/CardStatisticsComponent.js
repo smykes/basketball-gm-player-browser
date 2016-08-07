@@ -1,20 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Colors from './ColorsComponent.js';
-import {Polar} from 'react-chartjs-2';
 import {Radar} from 'react-chartjs-2';
 
 export default class CardStatistics extends React.Component {
   _findPlayer() {
-    for (let i=0; i < this.props.players.length; i++) {
-      if (this.props.players[i]['uuid'] == this.props.uid) {
-        return this.props.players[i];
+    return this.props.players.find((player) => {
+      if (player.uuid === this.props.uid) {
+        return player;
       }
-    }
+    });
   }
   render() {
     let player = this._findPlayer();
-
     let radarSkill = {
       labels: [
         "Inside",
@@ -107,9 +104,6 @@ export default class CardStatistics extends React.Component {
           }
       ]
     };
-
-
-    console.log(this.props.means);
     return (
       <section className="card card-statistics">
           <Radar data={radarData} />

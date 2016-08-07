@@ -6,7 +6,6 @@ import ReactDOM from 'react-dom';
 import stats from '../players.json';// import Chooser from 'Chooser';
 import Search from './SearchComponent.js';
 import CardPhysical from './CardPhysicalComponent.js';
-import CardCollegiate from './CardCollegiateComponent.js';
 import CardStatistics from './CardStatisticsComponent.js';
 import FileReader from './FileReaderComponent.js';
 import UUID from 'node-uuid';
@@ -30,8 +29,7 @@ export default class App extends React.Component {
     this._findSuggestions = this._findSuggestions.bind(this);
   }
   search() {
-    let t = this._findSuggestions();
-    this.setState({suggestions: t});
+    this.setState({suggestions: this._findSuggestions()});
   }
   select(event) {
     var uid = event.target.getAttribute('data-uid');
@@ -48,8 +46,9 @@ export default class App extends React.Component {
     }
     input = input.toLowerCase();
     if (input.substring(0, 1) !== ':') {
+
       for (let i = 0; i < this.state.roster.length-1; i++) {
-        var tmp;
+        let tmp;
         if (this.state.roster[i].name === undefined) {
           if (this.state.roster[i].firstName === undefined) {
             tmp = 'Jon Doe';
@@ -147,18 +146,18 @@ export default class App extends React.Component {
   return ret;
 }
   _findPlayerByUID(uid) {
-    for (let i = 0; i < this.state.roster.length-1; i++) {
-      if (this.state.roster[i].uuid === uid) {
-        return this.state.roster[i];
+    return this.state.roster.find((player) => {
+      if (player.uuid === uid) {
+        return player;
       }
-    }
+    });
   }
   help(event) {
     this.setState({modal: 'true'});
   }
   update(event) {
-    this.setState({uid: ReactDOM.findDOMNode(this.refs.playerSearch).value}, function() {
-      console.log(this.state.uid)
+    this.setState({uid: ReactDOM.findDOMNode(this.refs.playerSearch).value}, () => {
+      console.log("Current Player UID: " + this.state.uid);
     });
   }
   file(files) {
@@ -182,27 +181,27 @@ export default class App extends React.Component {
         tmpPass = 0,
         tmpRebound = 0,
         tmpPotential = 0;
-    jsonReader.onload = function(e) {
+    jsonReader.onload = (e) => {
       let tmp = JSON.parse(jsonReader.result);
-      for (var i = 0; i < tmp.players.length; i++) {
-        tmp.players[i].uuid = UUID.v1();
-        tmpThreePoint += tmp.players[i].ratings[0].tp;
-        tmpHeight += tmp.players[i].ratings[0].stre;
-        tmpSpeed += tmp.players[i].ratings[0].spd;
-        tmpJump += tmp.players[i].ratings[0].jmp;
-        tmpEndurance += tmp.players[i].ratings[0].endu;
-        tmpIns += tmp.players[i].ratings[0].ins;
-        tmpDunk += tmp.players[i].ratings[0].dnk;
-        tmpFreeThrow += tmp.players[i].ratings[0].ft;
-        tmpFieldGoal += tmp.players[i].ratings[0].fg;
-        tmpBlock += tmp.players[i].ratings[0].blk;
-        tmpSteal += tmp.players[i].ratings[0].stl;
-        tmpDribble += tmp.players[i].ratings[0].drb;
-        tmpPass+= tmp.players[i].ratings[0].pss;
-        tmpRebound += tmp.players[i].ratings[0].reb;
-        tmpPotential += tmp.players[i].ratings[0].pot;
-        tmpStrength += tmp.players[i].ratings[0].pot;
-        }
+      tmp.players.forEach((player) => {
+        player.uuid = UUID.v1();
+        tmpThreePoint += player.ratings[0].tp;
+        tmpHeight += player.ratings[0].stre;
+        tmpSpeed += player.ratings[0].spd;
+        tmpJump += player.ratings[0].jmp;
+        tmpEndurance += player.ratings[0].endu;
+        tmpIns += player.ratings[0].ins;
+        tmpDunk += player.ratings[0].dnk;
+        tmpFreeThrow += player.ratings[0].ft;
+        tmpFieldGoal += player.ratings[0].fg;
+        tmpBlock += player.ratings[0].blk;
+        tmpSteal += player.ratings[0].stl;
+        tmpDribble += player.ratings[0].drb;
+        tmpPass+= player.ratings[0].pss;
+        tmpRebound += player.ratings[0].reb;
+        tmpPotential += player.ratings[0].pot;
+        tmpStrength += player.ratings[0].pot;
+      });
       that.setState({
           roster: tmp.players,
           uid: tmp.players[0].uuid,
@@ -225,9 +224,8 @@ export default class App extends React.Component {
               "rebound" : Math.round(tmpRebound/tmp.players.length),
               "potential" : Math.round(tmpPotential/tmp.players.length)
             }
-          ] }, function() {
-        console.log(that.state.uid);
-      });
+          ] }, () => { console.log("Current Player ID: " + that.state.uid)
+        });
     }
     if (file) {
       jsonReader.readAsText(file);
