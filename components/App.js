@@ -34,7 +34,7 @@ export default class App extends React.Component {
   select(event) {
     var uid = event.target.getAttribute('data-uid');
     var player = this._findPlayerByUID(uid);
-    this.setState({uid: uid, suggestions: []}, function() {
+    this.setState({uid: uid, suggestions: []}, () => {
       document.getElementById('playerSearchInput').value = player.name;
     });
   }
@@ -46,7 +46,6 @@ export default class App extends React.Component {
     }
     input = input.toLowerCase();
     if (input.substring(0, 1) !== ':') {
-
       for (let i = 0; i < this.state.roster.length-1; i++) {
         let tmp;
         if (this.state.roster[i].name === undefined) {
@@ -61,10 +60,15 @@ export default class App extends React.Component {
         else {
           tmp = this.state.roster[i].name;
         }
-        let wName = tmp.substring(0, input.length);
-        wName = wName.toLowerCase();
-        if (input === wName) {
-          ret.push(this.state.roster[i]);
+        try {
+          let wName = tmp.substring(0, input.length);
+          wName = wName.toLowerCase();
+          if (input === wName) {
+            ret.push(this.state.roster[i]);
+          }
+        }
+        catch(e) {
+          continue;
         }
       }
     }
@@ -161,10 +165,10 @@ export default class App extends React.Component {
     });
   }
   file(files) {
-    var file = document.getElementById('test').files[0];
-    var that = this;
-    var jsonReader = new window.FileReader();
-    var tmpThreePoint = 0,
+    var file = document.getElementById('test').files[0],
+        that = this,
+        jsonReader = new window.FileReader(),
+        tmpThreePoint = 0,
         tmpHeight = 0,
         tmpStrength = 0,
         tmpSpeed = 0,

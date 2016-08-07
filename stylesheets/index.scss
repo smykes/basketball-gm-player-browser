@@ -1,3 +1,5 @@
+@import 'variables.scss';
+@import 'mixins.scss';
 @import 'components/search.scss';
 @import 'components/auto-complete.scss';
 @import 'components/auto-complete-choice.scss';
@@ -5,13 +7,35 @@
 @import 'components/card-statistics.scss';
 @import 'components/card-physical.scss';
 @import 'components/file-reader.scss';
+@import 'components/awards.scss';
+@import 'components/award.scss';
+@import 'components/rwd-table.scss';
+@import 'components/rating.scss';
+
 html {
-    background-color: #0063AC;
     padding: 0;
+    background-color: $primary-color;
+    //background-color: orange;
+    //@include break(md) {
+    //  background-color: yellow;
+    //}
+    //@include break(sm) {
+    //  background-color: red;
+    //}
+    //@include break(xs) {
+    //  background-color: blue;
+    //}
+
 }
 body {
   margin: 0; padding: 0;
 }
+ul.header {
+  float: left;
+}
+
+
+
 body, html {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   text-transform: capitalize;
@@ -24,9 +48,9 @@ main {
 
 }
 header {
-  background-color: #002845;
+  background-color: $accent-color;
   text-align: left;
-  color: white;
+  color: $light-text;
   height: 50px;
   line-height: 50px;
   text-align: center;
@@ -39,7 +63,7 @@ label {
   background-color: #0A3665;
   width: 100%;
   padding: 5px;
-  color: white;
+  color: $light-text;
   padding: 8px;
   display: block;
   text-transform: uppercase;
@@ -53,13 +77,13 @@ label {
   position:relative;
   background-color: white;
   overflow: hidden;
-  padding: 30px;
+  //padding: 30px;
 
   //padding: 15px 10px;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   .card__label--bottom {
     width: 100%;
-    height: 5px;
+    height: auto;
     background-color: #0A3665;
     position: absolute;
     bottom: 0;
@@ -74,9 +98,11 @@ label {
   }
   &.label {
     background-color: none;
-    color: black;
+    color: $dark-text;
   }
-
+  &.card--padded {
+    padding: 30px;
+  }
   .card--interior {
     padding: 10px;
   }
@@ -87,7 +113,7 @@ label {
   ul, li {
     list-style: none;
     margin: 0;
-    padding: 0;
+    //padding: 0;
   }
   .auto-complete {
 

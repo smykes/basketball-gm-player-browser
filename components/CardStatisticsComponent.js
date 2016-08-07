@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Radar} from 'react-chartjs-2';
-
+import TableRow from './TableRowComponent.js';
 export default class CardStatistics extends React.Component {
   _findPlayer() {
     return this.props.players.find((player) => {
@@ -9,6 +9,15 @@ export default class CardStatistics extends React.Component {
         return player;
       }
     });
+  }
+  _getRows(player) {
+    let ret = [];
+    player.stats.forEach((year, index) => {
+      if (year.playoffs !== true) {
+        ret.push(<TableRow key={index} index={index} player={player} />);
+      }
+    })
+    return ret;
   }
   render() {
     let player = this._findPlayer();
@@ -67,47 +76,73 @@ export default class CardStatistics extends React.Component {
       }
       ]
     };
-
+    var colors = [
+      "rgba(0,0,0,0.2)",
+      "rgba(255,0,0,0.2)",
+      "rgba(0,255,0,0.2)",
+      "rgba(0,0,255,0.2)",
+      "rgba(255,255,0,0.2)",
+      "rgba(0,255,255,0.2)",
+      "rgba(255,0,255,0.2)",
+      "rgba(192,192,192,0.2)",
+      "rgba(128,0,0,0.2)",
+      "rgba(0,128,0,0.2)",
+      "rgba(128,0,128,0.2)",
+      "rgba(0,128,128,0.2)",
+      "rgba(0,128,128,0.2)",
+      "rgba(0,128,128,0.2)"
+    ];
+    var dSet = [];
+    player.ratings.forEach((year, index) => {
+      let tmp = {};
+      tmp.label = "Measurables - " + year.season;
+      tmp.backgroundColor= colors[index],
+      tmp.borderColor= colors[index],
+      tmp.pointBackgroundColor= colors[index],
+      tmp.pointBorderColor= colors[index],
+      tmp.pointHoverBackgroundColor= colors[index],
+      tmp.pointHoverBorderColor= colors[index],
+      tmp.data = [
+        year.stre,
+        year.spd,
+        year.jmp,
+        year.endu
+      ]
+      dSet.push(tmp)
+    });
     let radarData = {
       labels: ["Strength", "Speed", "Jump", "Endurance"],
-      datasets: [
-          {
-              label: "Measurables",
-              backgroundColor: "rgba(10,54,101,0.2)",
-              borderColor: "rgba(10,54,101,1)",
-              pointBackgroundColor: "rgba(10,54,101,1)",
-              pointBorderColor: "#fff",
-              pointHoverBackgroundColor: "#fff",
-              pointHoverBorderColor: "rgba(10,54,101,1)",
-              data: [
-                player.ratings[0].stre,
-                player.ratings[0].spd,
-                player.ratings[0].jmp,
-                player.ratings[0].endu
-              ]
-          },
-          {
-            label: "League Average",
-            backgroundColor: "rgba(0,99,172,0.2)",
-            borderColor: "rgba(0,99,172,1)",
-            pointBackgroundColor: "rgba(0,99,172,1)",
-            pointBorderColor: "#fff",
-            pointHoverBackgroundColor: "#fff",
-            pointHoverBorderColor: "rgba(0,99,172,1)",
-            data: [
-              this.props.means[0].strength,
-              this.props.means[0].speed,
-              this.props.means[0].jump,
-              this.props.means[0].endurance
-            ]
-
-          }
-      ]
+      datasets: dSet
     };
+
+
+    let cats = ['season', 'gp', 'min', 'pts', 'trb', 'ast','stl','blk'];
+
     return (
+      <section>
       <section className="card card-statistics">
-          <Radar data={radarData} />
-          <Radar data={radarSkill}/>
+        <table className="rwd-table">
+          <thead>
+            <tr>
+              <th>Season</th>
+              <th>GP</th>
+              <th>Minutes</th>
+              <th>PTS</th>
+              <th>REB</th>
+              <th>AST</th>
+              <th>STL</th>
+              <th>BLK</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this._getRows(player)}
+          </tbody>
+        </table>
+      </section>
+      <section className="card card-statistics card--padded">
+        <Radar data={radarData} />
+        <Radar data={radarSkill}/>
+      </section>
       </section>
     )
   }

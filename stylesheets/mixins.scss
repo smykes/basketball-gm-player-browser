@@ -1,0 +1,15 @@
+//@include break(xs)
+@mixin break($point) {
+  @if $point == xs {
+    @media #{$query-xs} {@content;}
+  }
+  @else if $point == sm {
+    @media #{$query-sm} {@content;}
+  }
+  @else if $point == md {
+    @media #{$query-md} {@content;}
+  }
+  @else if $point == lg {
+    @media #{$query-lg} {@content;}
+  }
+}
