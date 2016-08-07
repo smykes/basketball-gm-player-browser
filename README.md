@@ -2,7 +2,7 @@
 Utility for viewing [Basketball GM](https://basketball-gm.com/) JSON roster files.
 
 ###Technical Stuff###
-This is starting to get usable.  You can go to http://dev.secondrunnerup.com/player and choose a file to browse through, currently it only really works with rosters from https://github.com/alexnoob/BasketBall-GM-Rosters
+This is starting to get usable.  You can go to http://dev.secondrunnerup.com/player and choose a file to browse through, you should be able to use it with your own exported JSON files now.
 
 ###Working Queries###
 Currently you can search by name (using the first name first as the JSON files only have a name field and not a fName lName field).
